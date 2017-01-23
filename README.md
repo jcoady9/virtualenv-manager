@@ -1,0 +1,1 @@
+virtualenv-manager
