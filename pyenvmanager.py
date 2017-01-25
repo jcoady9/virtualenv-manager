@@ -57,12 +57,12 @@ class PyEnvManager(object):
         cursor = self.db_conn.execute('SELECT * FROM environments')
         return cursor.fetchall()
 
-manager = PyEnvManager()
-manager.create_environment('test-env')
-for env in manager.environments():
-    print(env)
-manager.delete_environment(1)
-print('deleted environment')
-for env in manager.environments():
-     print(env)
-print('done!')
+# manager = PyEnvManager()
+# manager.create_environment('test-env')
+# for env in manager.environments():
+#    print(env)
+# manager.delete_environment(1)
+# print('deleted environment')
+# for env in manager.environments():
+#      print(env)
+# print('done!')
