@@ -46,7 +46,7 @@ class PyEnvManager(object):
         env_path = os.path.abspath(os.path.join('C:\\', self.home_path, self.env_storage_dir, env[0]))
         try:
             shutil.rmtree(env_path)
-            self.db_conn.execute('DELETE FROM environments WHERE ROWID=?', (position,))
+            self.db_conn.execute('DELETE FROM environments WHERE ROWID=?', (position + 1,))
             self.db_conn.commit()
         except OSError as error:
             print('ERROR: Unable to delete virtual environment: %s' % error.filename)
