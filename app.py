@@ -56,10 +56,14 @@ class PyEnvManagerApp(tkinter.Frame):
                                            height=10,
                                            width=50
         )
+        self.env_listbox.bind('<Double-Button-1>', self.start_env_handler)
         self.env_listbox.grid(row=1, column=0)
         self.list_environments()
 
     # TODO: implement on click event for starting a cli terminal with selected environment
+    def start_env_handler(self, event):
+        selected_row = self.env_listbox.curselection()
+        self.env_manager.open_environment(selected_row[0] + 1)
 
 app = PyEnvManagerApp()
 app.master.title('VirtualEnv Manager')
