@@ -24,10 +24,10 @@ class PyEnvManager(object):
             self.db_conn.close()
 
     def open_environment(self, position):
-        process = subprocess.Popen('start cmd', stdin=subprocess.PIP, shell=True)
+        process = subprocess.Popen('Start cmd.exe @cmd /k virtualenv', stdin=subprocess.PIPE, shell=True)
         environment_results = self.db_conn.execute('SELECT * FROM environments WHERE ROWID=?', (position,))
         environment = environment_results.fetchone()
-        process.communicate(input=environment[1])
+        process.communicate(input="virtualenv --help".encode())
 
     def create_environment(self, name):
         env_path = os.path.abspath(os.path.join('C:\\', self.home_path, self.env_storage_dir, name))
