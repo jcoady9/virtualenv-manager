@@ -26,7 +26,8 @@ class MenuFrame(tkinter.Frame):
     def delete_on_click(self):
         selected_row = self.master.env_listbox.curselection()
         if selected_row:
-            self.master.env_manager.delete_environment(selected_row[0])
+            name = self.master.env_listbox.get(selected_row)
+            self.master.env_manager.delete_environment(name)
             self.master.list_environments()
 
 
@@ -63,7 +64,8 @@ class PyEnvManagerApp(tkinter.Frame):
     # TODO: implement on click event for starting a cli terminal with selected environment
     def start_env_handler(self, event):
         selected_row = self.env_listbox.curselection()
-        self.env_manager.open_environment(selected_row[0] + 1)
+        name = self.env_listbox.get(selected_row)
+        self.env_manager.open_environment(name)
 
 app = PyEnvManagerApp()
 app.master.title('VirtualEnv Manager')
