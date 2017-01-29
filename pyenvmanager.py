@@ -40,6 +40,9 @@ class PyEnvManager(object):
         process = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True)
 
     def create_environment(self, name):
+        if not name:
+            return
+
         env_path = os.path.abspath(os.path.join('C:\\', self.home_path, self.env_storage_dir, name))
         try:
             subprocess.check_call(['virtualenv', env_path])
