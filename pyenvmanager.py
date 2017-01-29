@@ -11,7 +11,8 @@ class PyEnvManager(object):
     env_storage_dir = 'pyenvironments'
 
     def __init__(self):
-        if sys.platform == 'win32':
+        self.platform = sys.platform
+        if self.platform == 'win32':
             self.home_path = os.environ['USERPROFILE']
         else:
             self.home_path = '~'
@@ -26,7 +27,17 @@ class PyEnvManager(object):
     def open_environment(self, name):
         environment_results = self.db_conn.execute('SELECT *  FROM environments WHERE environment_name=?', (name,))
         environment = environment_results.fetchone()
-        process = subprocess.Popen('start %s/Scripts/activate.bat' % environment[1], stdin=subprocess.PIPE, shell=True)
+        script = ''
+        terminal = ''
+        if self.platform == 'win32':
+            terminal = 'start'
+            script = 'activate.bat'
+        else:
+            terminal = 'bash -x'
+            script = 'activate'
+        script_path = '/'.join([environment[1], 'Scripts', script])
+        command = ' '.join([terminal, script_path])
+        process = subprocess.Popen(command, stdin=subprocess.PIPE, shell=True)
 
     def create_environment(self, name):
         env_path = os.path.abspath(os.path.join('C:\\', self.home_path, self.env_storage_dir, name))
