@@ -1,6 +1,6 @@
 import tkinter
 
-from pyenvmanager import PyEnvManager
+from .pyenvmanager import PyEnvManager
 
 class MenuFrame(tkinter.Frame):
 
@@ -67,6 +67,6 @@ class PyEnvManagerApp(tkinter.Frame):
         name = self.env_listbox.get(selected_row)
         self.env_manager.open_environment(name)
 
-app = PyEnvManagerApp()
-app.master.title('VirtualEnv Manager')
-app.mainloop()
+#app = PyEnvManagerApp()
+#app.master.title('VirtualEnv Manager')
+#app.mainloop()
