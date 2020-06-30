@@ -4,7 +4,7 @@ After starting so many different python projects it started becoming a nuisance 
 ## Installation
 ```
 # clone this repository
-git clone https://github.com/jcoady9/beets.git
+git clone https://github.com/jcoady9/virtualenv-manager
 
 # Enter the project directory
 cd virtualenv-manager
